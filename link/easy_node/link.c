@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "link.h"
+#define true 1
+#define false 0
 
 LinkNode *createLink(int arr[], int len)
 {
@@ -63,6 +65,7 @@ LinkNode *midNode(LinkNode *head)
     }
     
     LinkNode *slow,*fast;
+    slow = fast = head;
     
     while (fast != NULL && fast->next != NULL) {
         fast = fast->next->next;
@@ -72,7 +75,7 @@ LinkNode *midNode(LinkNode *head)
     return slow;
 }
 
-bool hasCircle(LinkNode *head, LinkNode **circleNode)
+_Bool hasCircle(LinkNode *head, LinkNode **circleNode)
 {
     if (head == NULL) {
         return NULL;
@@ -123,7 +126,7 @@ LinkNode *findCirclePort(LinkNode *head)
     return fast;
 }
 
-bool isIntersect(LinkNode *l1, LinkNode *l2)
+_Bool isIntersect(LinkNode *l1, LinkNode *l2)
 {
     if (l1 == NULL || l2 == NULL) {
         return false;
@@ -153,23 +156,23 @@ LinkNode *findIntersectNode(LinkNode *l1, LinkNode *l2)
     
     int len1 = getLinkLength(l1);
     int len2 = getLinkLength(l2);
-    int diff = 0
+    int diff = 0;
     
     if (len1 > len2) {
         diff = len1 - len2;
-        for (i = 0; i < diff; i++) {
+        for (int i = 0; i < diff; i++) {
             l1 = l1->next;
         }
         
     }else {
         diff = len2 - len1;
-        for (i = 0; i < diff; i++) {
+        for (int i = 0; i < diff; i++) {
             l2 = l2->next;
         }
     }
     
     while (l1 != NULL) {
-        if (l1 = l2) {
+        if (l1 == l2) {
             return l1;
         }
         
@@ -210,7 +213,7 @@ LinkNode *reverseByLoop(LinkNode *head)
 
         LinkNode *next = node->next;
         if (next == NULL) {
-            newHead = node
+            newHead = node;
         }
         
         node->next = prev;
