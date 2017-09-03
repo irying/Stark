@@ -4,22 +4,22 @@
 typedef struct minStackElement {
     int data;
     int min;
-} minStackElement;
+} MinStackElement;
 
 typedef struct minStack {
-    minStackElement *element;
+    MinStackElement *element;
     int size;
     int top;
 } MinStack;
 
-void minStackInit(minStack *stack, int maxSize);
+void minStackInit(MinStack *stack, int maxSize);
 
-void minStackPush(minStack *stack, int data);
+void minStackPush(MinStack *stack, int data);
 
-int minStackPop(minStack *stack);
+int minStackPop(MinStack *stack);
 
-int minStackMin(minStack *stack);
+int minStackMin(MinStack *stack);
 
-void minStackDestroy(minStack *stack);
+void minStackDestroy(MinStack *stack);
 
 #endif

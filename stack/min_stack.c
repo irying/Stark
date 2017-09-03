@@ -4,7 +4,7 @@
 
 void minStackInit(MinStack *stack, int maxSize)
 {
-    satck->element = (MinStackElement *)malloc(sizeof(MinStackElement) * maxSize);
+    stack->element = (MinStackElement *)malloc(sizeof(MinStackElement) * maxSize);
     if (NULL == stack->element) {
         fprintf(stderr, "init failed");
         exit(1);
@@ -25,12 +25,11 @@ void minStackPush(MinStack *stack, int data)
     
     p = stack->element + stack->top;
     p->data = data;
-
-    if (0 == stack->top || p->min > data) {
+    
+    p->min = (0 == stack->top ? data : stack->element[stack->top - 1].min);
+    if (p->min > data)
         p->min = data;
-    } else {
-        p->min = stack->element[stack->top-1].min;
-    }
+
     
     ++stack->top;
     
