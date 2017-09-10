@@ -31,6 +31,9 @@ int main(int argc, char *argv[])
     
     printf("preOrder:\n");
     preOrder(root);
-    
+    printf("inOrder:\n");
+    inOrder(root);
+    printf("postOrder:\n");
+    postOrder(root);
     return 0;
 }
