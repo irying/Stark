@@ -3,15 +3,15 @@
 
 typedef struct node {
     int data;
-    struct node *leftChild;
-    struct node *rightChild;
+    struct node *left;
+    struct node *right;
 } BinaryTreeNode;
 
 typedef int(*COMPARE)(void *, void *);
 
-int compare(BinaryTreeNode *node1, BinaryTreeNode *node2);
+int compareNode(BinaryTreeNode *node1, BinaryTreeNode *node2);
 
-BinaryTreeNode insert(BinaryTreeNode *root, BinaryTreeNode *node);
+BinaryTreeNode *insert(BinaryTreeNode *root, BinaryTreeNode *node, COMPARE compare);
 
 void preOrder(BinaryTreeNode *root);
 void inOrder(BinaryTreeNode *root);
