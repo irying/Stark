@@ -18,15 +18,15 @@ void quicksort(int *data, int left, int right)
         while (data[i] <= temp && i<j)
             i++;
         if (i<j) {
-            t = data[j];
+            t = data[i];
             data[i] = data[j];
             data[j] = t;
         }
-        data[left] = data[i];
-        data[i] = temp;
-        quicksort(data, left, i-1);
-        quicksort(data, i+1, right);
     }
+    data[left] = data[i];
+    data[i] = temp;
+    quicksort(data, left, i-1);
+    quicksort(data, i+1, right);
    
     
 }
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     for(int i=0;i<length;i++)
         printf("%d\t",data[i]);
     
-    quicksort(data, 0, length);
+    quicksort(data, 0, length-1);
     printf("排序后 \n");
     for(int i=0; i<length; i++)
         printf("%d\t", data[i]);
