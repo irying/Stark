@@ -10,27 +10,27 @@ int main(int argc, char *argv[])
     }
     
     int length = argc - 1;
-    BinaryTreeNode *node,*root,*node2,*root2 = NULL;
+    BinaryTreeNode *node1,*root1,*node2,*root2 = NULL;
     int *data = (int *)calloc(length, sizeof(int));
-    
+
     printf("original data:\n");
     for (int i = 0; i < length; i++) {
         data[i] = atoi(argv[i+1]);
         printf("%d ", data[i]);
-        BinaryTreeNode *node = (BinaryTreeNode *)malloc(sizeof(BinaryTreeNode));
-        if (node == NULL) {
+        BinaryTreeNode *node1 = (BinaryTreeNode *)malloc(sizeof(BinaryTreeNode));
+        if (node1 == NULL) {
             exit(1);
         }
         
-        node->data = data[i];
-        node->left = NULL;
-        node->right = NULL;
+        node1->data = data[i];
+        node1->left = NULL;
+        node1->right = NULL;
         
-        root = insert(root, node, (COMPARE)compareNode);
+        root1 = insert(root1, node1, (COMPARE)compareNode);
     }
 // 6 3 9 5 7 8 2 4 1 10
     
-    int arr[5] = {3,2,5,1,4};
+    char arr[5] = {3,2,5,1,4};
     for (int j = 0; j < 5; j++) {
         BinaryTreeNode *node2 = (BinaryTreeNode *)malloc(sizeof(BinaryTreeNode));
         if (node2 == NULL) {
@@ -43,9 +43,10 @@ int main(int argc, char *argv[])
         
         root2 = insert(root2, node2, (COMPARE)compareNode);
     }
+   
     
     
-//    printf("in it %d:\n", hasSubtree(root, root2));
+    printf("in it %d:\n", hasSubtree(root1, root2));
 
     return 0;
 }

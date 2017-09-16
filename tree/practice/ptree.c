@@ -57,3 +57,49 @@ _Bool doesTree1HasTree2(BinaryTreeNode *node1, BinaryTreeNode *node2)
     return doesTree1HasTree2(node1->left, node2->left) && doesTree1HasTree2(node1->right, node2->right);
     
 }
+
+void preOrder(BinaryTreeNode *root)
+{
+    if (root != NULL) {
+        printf("%d ", root->data);
+        preOrder(root->left);
+        preOrder(root->right);
+    }else{
+        return;
+    }
+}
+
+// 递归版本
+void inOrder(BinaryTreeNode *root)
+{
+    
+    if (root->left != NULL) {
+        inOrder(root->left);
+    }
+    printf("%d ", root->data);
+    if (root->right != NULL) {
+        inOrder(root->right);
+    }
+    return;
+    
+}
+
+// 不想写，两个while，一个数组存数据
+void inOrderWithLoop(BinaryTreeNode *root)
+{
+    
+}
+
+void postOrder(BinaryTreeNode *root)
+{
+    if (root->left != NULL) {
+        postOrder(root->left);
+    }
+    
+    if (root->right != NULL) {
+        postOrder(root->right);
+    }
+    
+    printf("%d ", root->data);
+    return;
+}
