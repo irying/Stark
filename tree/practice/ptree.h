@@ -43,4 +43,6 @@ void printPath(Stack *stack);
 
 void destoryTree(BinaryTreeNode *tree);
 
+BinaryTreeNode *rebuildTree(int *preOrder, int *inOrder,)
+
 #endif
