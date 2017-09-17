@@ -43,6 +43,13 @@ void printPath(Stack *stack);
 
 void destoryTree(BinaryTreeNode *tree);
 
-BinaryTreeNode *rebuildTree(int *preOrder, int *inOrder,)
+
+// 根据前序遍历和中序遍历重建二叉树
+BinaryTreeNode *rebuildTree(int *preOrder, int *inOrder, int length);
+
+void generateArray();
+
+// 从上到下打印二叉树，即广度遍历
+void fromUptoDown(BinaryTreeNode *root);
 
 #endif

@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     }
     
     int length = argc - 1;
-    BinaryTreeNode *node1,*root1,*node2,*root2 = NULL;
+    BinaryTreeNode *node1,*root1,*node2,*root2,*root3 = NULL;
     int *data = (int *)calloc(length, sizeof(int));
 
     printf("original data:\n");
@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
         root1 = insert(root1, node1, (COMPARE)compareNode);
     }
 // 6 3 9 5 7 8 2 4 1 10
-    
     char arr[5] = {3,2,5,1,4};
     for (int j = 0; j < 5; j++) {
         BinaryTreeNode *node2 = (BinaryTreeNode *)malloc(sizeof(BinaryTreeNode));
@@ -54,18 +53,27 @@ int main(int argc, char *argv[])
     stack->top = 0;
     findPath(root1, sum, stack);
     
-    printf("to rebuid a tree\n");
-    printf("enter the preOrder:\n");
-    char pre[100];
-    for(i = 0; i < 100; i++) {
-        scanf("%d ",&pre[i]);
-        if (<#condition#>) {
-            <#statements#>
-        }
-    }
-        
-    scanf("%d", &sum);
+    int count = 8;
+    printf("to rebuid a tree, how many nodes do you have: \n");
+    scanf("%d", &count);
+    if(count<0) exit(1);
     
+    printf("enter preOrder: \n");
+
+    int pre[count],mid[count];
+    generateArray(pre);
+    printf("enter inOrder: \n");
+    generateArray(mid);
+    int pre[8] = {1, 2, 4, 7, 3, 5, 6, 8};
+    int mid[8] = {4, 7, 2, 1, 5, 3, 8, 6};
+    
+    root3 = rebuildTree(pre, mid, count);
+    printf("preOrder:\n");
+    preOrder(root3);
+    printf("inOrder:\n");
+    inOrder(root3);
+    printf("postOrder:\n");
+    postOrder(root3);
     
     free(stack);
     destoryTree(root1);

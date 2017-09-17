@@ -159,10 +159,61 @@ void printPath(Stack *stack)
     return;
 }
 
+void generateArray(int *array)
+{
+    int i = 0;
+    int ch;
+    while ((ch = fgetc(stdin)) != '\n') {
+        if (ch == ' ' || ch == ',')
+            continue;
+        ungetc(ch, stdin);
+        scanf("%d", &array[i++]);
+    }
+}
+
+BinaryTreeNode *rebuildTree(int *preOrder, int *inOrder, int length)
+{
+    if (preOrder == NULL || inOrder == NULL || length <= 0) return NULL;
+    int count = 0;
+    for (int i = 0; i < length; i++) {
+        if (inOrder[i] == preOrder[0]) {
+            break;
+        }else{
+            count++;
+        }
+    }
+    
+    BinaryTreeNode *node = (BinaryTreeNode *)malloc(sizeof(BinaryTreeNode));
+    node->data = preOrder[0];
+    node->left = rebuildTree(preOrder + 1, inOrder, count);
+    node->right = rebuildTree(preOrder + count + 1, inOrder + count + 1, length-count -1);
+    
+    return node;
+}
+
 void destoryTree(BinaryTreeNode *tree) {
     if (!tree) { return; }
     
     destoryTree(tree->left);
     destoryTree(tree->right);
     free(tree);
+}
+
+void fromUpToDown(BinaryTreeNode *tree)
+{
+    // 每次打印一个节点的时候，如果该节点有子节点，则把该节点的子节点放到一个队列的末尾。
+    // 接下来到队列的头部取出最早进入队列的节点，重复前面的步骤。
+    
+    dequePush();
+    while (deque) {
+        front = dequeFront();
+        printf front->data;
+        if (front->left) {
+            fromUpToDown(front->left);
+        }
+        
+        if (front->right) {
+            fromUpToDown(front->right);
+        }
+    }
 }
