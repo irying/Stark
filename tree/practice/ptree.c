@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "ptree.h"
 
+
+
 BinaryTreeNode *insert(BinaryTreeNode *root, BinaryTreeNode *node, COMPARE compare)
 {
     if (root == NULL) {
@@ -84,11 +86,6 @@ void inOrder(BinaryTreeNode *root)
     
 }
 
-// 不想写，两个while，一个数组存数据
-void inOrderWithLoop(BinaryTreeNode *root)
-{
-    
-}
 
 void postOrder(BinaryTreeNode *root)
 {
@@ -102,4 +99,70 @@ void postOrder(BinaryTreeNode *root)
     
     printf("%d ", root->data);
     return;
+}
+
+
+void findPath(BinaryTreeNode *root, int sum, Stack *stack)
+{
+    if (root == NULL) {
+        return;
+    }
+    
+    currentSum += root->data;
+    stackPush(stack, root->data);
+    
+    
+    _Bool isLeaf = root->left == NULL && root->right == NULL;
+    if (currentSum == sum && isLeaf) {
+        printf("\n");
+        printPath(stack);
+    }
+    
+    if (root->left != NULL) {
+        findPath(root->left, sum, stack);
+    }
+    if (root->right != NULL) {
+        findPath(root->right, sum, stack);
+    }
+    currentSum -= root->data;
+    stackPop(stack);
+}
+
+void stackPush(Stack *stack, int data)
+{
+    if (!stack) return;
+    stack->element[stack->top++] = data;
+    return;
+}
+
+int stackPop(Stack *stack)
+{
+    if (!stack || stack->top == 0) {
+        return 0;
+    }
+    
+    return stack->element[--stack->top];
+}
+
+void printPath(Stack *stack)
+{
+    if (stack->top == 0) {
+        printf("no path\n");
+        return;
+    }
+    
+    for (int i = 0; i < stack->top; i++) {
+        printf("%d\t", stack->element[i]);
+    }
+    
+    printf("\n");
+    return;
+}
+
+void destoryTree(BinaryTreeNode *tree) {
+    if (!tree) { return; }
+    
+    destoryTree(tree->left);
+    destoryTree(tree->right);
+    free(tree);
 }

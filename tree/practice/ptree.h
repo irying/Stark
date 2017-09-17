@@ -2,6 +2,7 @@
 #define PTREE_H
 #define true 1
 #define false 0
+static int currentSum = 0;
 
 typedef struct node {
     int data;
@@ -10,6 +11,11 @@ typedef struct node {
 } BinaryTreeNode;
 
 typedef int(*COMPARE)(void *, void *);
+
+typedef struct stack {
+    char element[101];
+    int top;
+} Stack;
 
 int compareNode(BinaryTreeNode *node1, BinaryTreeNode *node2);
 
@@ -27,6 +33,14 @@ _Bool hasSubtree(BinaryTreeNode *node1, BinaryTreeNode *node2);
 
 _Bool doesTree1HasTree2(BinaryTreeNode *node1, BinaryTreeNode *node2);
 
+void findPath(BinaryTreeNode *root, int sum, Stack *stack);
 
+void stackPush(Stack *stack, int data);
+
+int stackPop(Stack *stack);
+
+void printPath(Stack *stack);
+
+void destoryTree(BinaryTreeNode *tree);
 
 #endif
