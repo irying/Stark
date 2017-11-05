@@ -108,3 +108,42 @@ int main() {
     return 0;
 }
 ```
+
+
+php版本
+
+```Php
+<?php
+$pattern = "abba";
+$str = "dog cat cat dog";
+$str .= " ";
+$len1 = strlen($pattern);
+$len2 = strlen($str);
+$i=$j=0;
+while ($i<$len1 && $j<$len2) {
+    
+    $pos = strpos($str, ' ', $j);
+    $temp = substr($str, $j, $pos-$j);
+    
+    if (isset($hash1[$pattern[$i]]) && $hash1[$pattern[$i]] != $temp) {
+        echo -1;
+    } 
+    
+    if (isset($hash2[$temp]) && $hash2[$temp] != $pattern[$i]) {
+        echo -2;
+    } 
+    $hash1[$pattern[$i]] = $temp;
+    $hash2[$temp] = $pattern[$i];
+  
+    $j = $pos + 1;
+    $i++;
+}
+
+if($i == $len1 && $j == $len2) {
+    echo 1;
+}else {
+    echo 0;
+}
+
+?>
+```
